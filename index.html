@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>IPv6 na Prática</title>
-<meta name="description" content="Guia de estudos de IPv6 para iniciantes em cibersegurança, baseado no livro Laboratório de IPv6 do NIC.br, com laboratório interativo.">
+<title>IPv6 na Prática · Aprenda redes e cibersegurança na prática</title>
+<meta name="description" content="Aprenda IPv6 e cibersegurança vendo cada pacote passar: laboratório interativo com 15 missões, terminal simulado e ataques reais com suas defesas. Gratuito e sem cadastro.">
 <meta property="og:title" content="IPv6 na Prática">
-<meta property="og:description" content="Guia de estudos de IPv6 para iniciantes em cibersegurança, baseado no livro Laboratório de IPv6 do NIC.br, com laboratório interativo.">
+<meta property="og:description" content="Aprenda IPv6 e cibersegurança vendo cada pacote passar: laboratório interativo com 15 missões, terminal simulado e ataques reais com suas defesas. Gratuito e sem cadastro.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ipv6-na-pratica.vercel.app/">
 <meta property="og:site_name" content="IPv6 na Prática">
@@ -18,386 +18,168 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ipv6-na-pratica.vercel.app/og.png">
 <link rel="canonical" href="https://ipv6-na-pratica.vercel.app/">
-<meta name="theme-color" content="#2347C9">
+<meta name="theme-color" content="#0A0F1B">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script src="js/tema.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
 <link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/guia.css">
+<link rel="stylesheet" href="css/inicio.css">
 </head>
 <body>
-<div class="shell">
-  <nav class="side" aria-label="Capítulos">
-    <div class="brand">IPv6 na Prática <span>guia de estudos</span></div>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="IPv6 na Prática, início">
+      <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M318 318 L408 408" stroke="#F3A55E" stroke-width="56" stroke-linecap="round"/><circle cx="226" cy="226" r="128" fill="#05080F" stroke="#F3A55E" stroke-width="44"/><text x="226" y="256" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="700" font-size="96" fill="#F3A55E">v6</text></svg>
+      <span>IPv6 na Prática<small>Estudo Hacking</small></span>
+    </a>
+    <nav class="links" aria-label="Seções">
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#missoes">Missões</a>
+      <a href="#demo">Demo</a>
+      <a href="guia.html">Guia</a>
+    </nav>
     <div class="theme" role="group" aria-label="Tema">
-      <button data-t="system" aria-pressed="true" title="Sistema"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="2.5" width="13" height="9" rx="1.5"/><path d="M5.5 14h5"/></svg><span>Sistema</span></button>
-      <button data-t="light" aria-pressed="false" title="Claro"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6L13 13M3 13l1.4-1.4M11.6 4.4L13 3"/></svg><span>Claro</span></button>
-      <button data-t="dark" aria-pressed="false" title="Escuro"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13.5 9.5A6 6 0 1 1 6.5 2.5a4.7 4.7 0 0 0 7 7z"/></svg><span>Escuro</span></button>
+      <button data-t="system" aria-pressed="true" title="Tema do sistema"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="2.5" width="13" height="9" rx="1.5"/><path d="M5.5 14h5"/></svg></button>
+      <button data-t="light" aria-pressed="false" title="Claro"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6L13 13M3 13l1.4-1.4M11.6 4.4L13 3"/></svg></button>
+      <button data-t="dark" aria-pressed="false" title="Escuro"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13.5 9.5A6 6 0 1 1 6.5 2.5a4.7 4.7 0 0 0 7 7z"/></svg></button>
     </div>
-    <div class="progress"><div class="bar"><i id="pbar"></i></div><small id="ptext">0 de 9 seções estudadas</small></div>
-    <a class="nav-lab" href="laboratorio.html">Laboratório prático <span aria-hidden="true">→</span></a>
-    <ul class="toc" id="toc">
-      <li><a href="#inicio" data-s="inicio"><span class="dot"></span>Começo</a></li>
-      <li><a href="#enderecos" data-s="enderecos"><span class="dot"></span>Endereços IPv6</a></li>
-      <li><a href="#protocolos" data-s="protocolos"><span class="dot"></span>Protocolos e camadas</a></li>
-      <li><a href="#basico" data-s="basico"><span class="dot"></span>Cap. 1 · Básico</a></li>
-      <li><a href="#simulador" data-s="simulador"><span class="dot"></span>Simulador NDP</a></li>
-      <li><a href="#seguranca" data-s="seguranca"><span class="dot"></span>Cap. 3 · Segurança</a></li>
-      <li><a href="#servicos" data-s="servicos"><span class="dot"></span>Cap. 2 · Serviços</a></li>
-      <li><a href="#transicao" data-s="transicao"><span class="dot"></span>Cap. 4 · Transição</a></li>
-      <li><a href="#roteamento" data-s="roteamento"><span class="dot"></span>Cap. 5 · Roteamento</a></li>
-      <li><a href="#quiz" data-s="quiz"><span class="dot"></span>Revisão e quiz</a></li>
-    </ul>
-  </nav>
+    <a class="btn primary sm" href="laboratorio.html#missao-1">Começar <span class="arr">→</span></a>
+  </div>
+</header>
 
-  <main>
-    <!-- INÍCIO -->
-    <section id="inicio" class="hero">
-      <p class="eyebrow">Resumo do livro “Laboratório de IPv6” · NIC.br / IPv6.br</p>
-      <h1>IPv6 explicado para quem está começando em cibersegurança</h1>
-      <p class="lead">O livro original tem 417 páginas de roteiros práticos no emulador CORE. Aqui está o essencial, em linguagem simples, com foco no que importa para quem quer proteger redes: como o IPv6 funciona, onde ele pode ser atacado e como configurá-lo com segurança.</p>
-
-      <div class="hero-cta"><a class="big" href="laboratorio.html">Abrir o laboratório prático →</a><span>15 missões com terminal, topologia animada e captura de pacotes.</span></div>
-
-      <div class="addr-hero" aria-label="Exemplo de endereço IPv6 dividido em partes">
-        <p class="eyebrow">Anatomia de um endereço IPv6 · 128 bits · 8 grupos de 16 bits</p>
-        <div class="hextets" id="heroHex"></div>
-        <div class="legend">
-          <span><i class="sw" style="background:var(--accent)"></i><b>Prefixo de rede (/64)</b> · diz em qual rede o aparelho está</span>
-          <span><i class="sw" style="background:var(--iid)"></i><b>Identificador da interface</b> · diz qual aparelho dentro da rede</span>
+<main>
+  <section class="hero" id="hero">
+    <div class="grid-bg"></div><div class="spot" id="spot"></div>
+    <div class="wrap">
+      <div>
+        <span class="badge"><i>GRÁTIS</i>Sem cadastro · baseado no livro do NIC.br</span>
+        <h1><span class="v6">IPv6</span> na Prática</h1>
+        <p class="sub">Aprenda redes e cibersegurança <b>vendo cada pacote passar</b>. Digite comandos, assista ao ataque acontecer e descubra como se defender.</p>
+        <div class="cta">
+          <a class="btn primary" href="laboratorio.html#missao-1">Começar pela missão 1 <span class="arr">→</span></a>
+          <a class="btn" href="guia.html">Ler o guia de estudos</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong data-count="15">15</strong><span>missões práticas</span></div>
+          <div class="stat"><strong data-count="7">7</strong><span>camadas OSI explicadas</span></div>
+          <div class="stat"><strong data-count="0">0</strong><span>instalações necessárias</span></div>
         </div>
       </div>
 
-      <div class="facts">
-        <div class="fact"><strong>32 → 128 bits</strong><span>IPv4 tem ~4,3 bilhões de endereços. IPv6 tem 340 undecilhões.</span></div>
-        <div class="fact"><strong>Esgotado</strong><span>No Brasil e na América Latina não há mais IPv4 livre para novos usuários.</span></div>
-        <div class="fact"><strong>Já está ativo</strong><span>Windows, macOS e Linux usam IPv6 por padrão, mesmo que ninguém tenha configurado.</span></div>
-      </div>
-
-      <div class="prose">
-        <h3>Por que o IPv6 existe (Introdução do livro)</h3>
-        <p>A Internet funciona bem por dois princípios: <b>conectividade fim a fim</b> (qualquer aparelho pode falar diretamente com qualquer outro) e <b>núcleo simples</b> (os roteadores só encaminham pacotes, a inteligência fica nas pontas). Isso permite que qualquer pessoa crie um serviço novo sem pedir permissão.</p>
-        <p>O problema: cada aparelho precisa de um endereço IP, e os endereços IPv4 acabaram. A solução paliativa dos provedores é o <b>CGNAT</b>, que coloca dezenas de clientes atrás de um único IPv4. Isso encarece a rede, atrapalha jogos, chamadas de vídeo e P2P, e dificulta investigações: um mesmo IP passa a representar centenas de pessoas.</p>
-        <p>O IPv6 resolve com um espaço de endereços praticamente infinito. Mas ele <b>não é compatível</b> com o IPv4, então os dois vão conviver por anos (isso se chama <b>pilha dupla</b> ou <i>dual stack</i>).</p>
-      </div>
-
-      <div class="callout sec">
-        <span class="tag">Por que isso importa em segurança</span>
-        <p>“Não usamos IPv6” quase nunca é verdade. Como os sistemas operacionais ativam IPv6 sozinhos, uma rede pode estar trafegando IPv6 sem que o firewall ou o time de segurança saiba. O livro alerta que alguns computadores chegam a criar <b>túneis automáticos</b> para obter IPv6, passando por fora de filtros e proteções. Ignorar o IPv6 é deixar uma porta aberta.</p>
-      </div>
-
-      <div class="prose"><h3>Trilha sugerida para iniciantes em segurança</h3>
-        <p>O livro segue a ordem dos cursos do NIC.br. Para quem vem de cibersegurança, esta ordem rende mais:</p></div>
-      <ol class="path">
-        <li><b>Endereços IPv6</b><span>Ler e reconhecer tipos de endereço. Use a ferramenta interativa.</span></li>
-        <li><b>NDP (Cap. 1)</b><span>O “ARP do IPv6”. É a base de quase todo ataque em rede local.</span></li>
-        <li><b>Simulador NDP</b><span>Veja as mensagens passando, incluindo um ataque.</span></li>
-        <li><b>Segurança (Cap. 3)</b><span>Ataque DoS, firewall e IPsec.</span></li>
-        <li><b>Serviços, transição, roteamento</b><span>Onde surgem brechas na prática.</span></li>
-      </ol>
-
-      <div class="callout note">
-        <span class="tag">Sobre o livro</span>
-        <p>Publicado em 2015 pela equipe IPv6.br do NIC.br. É um livro para <b>praticar</b>: cada “experiência” traz uma topologia pronta para o emulador CORE (máquina virtual disponível em <a href="http://lab.ipv6.br" target="_blank" rel="noopener">lab.ipv6.br</a>) e você captura os pacotes com o Wireshark. Algumas ferramentas mudaram desde então: <code>ping6</code> hoje é <code>ping -6</code>, e o Quagga foi sucedido pelo FRRouting.</p>
-      </div>
-      <button class="done-toggle" data-done="inicio" aria-pressed="false">Marcar como estudado</button>
-    </section>
-
-    <!-- ENDEREÇOS -->
-    <section id="enderecos">
-      <div class="sec-head">
-        <p class="eyebrow">Ferramenta interativa</p>
-        <h2>Lendo endereços IPv6</h2>
-        <p class="lead">Antes de qualquer experimento, você precisa reconhecer um endereço só de olhar. Digite um endereço ou clique nos exemplos.</p>
-      </div>
-
-      <div class="prose">
-        <p><b>Regras de escrita.</b> Um endereço tem 8 grupos de 4 dígitos hexadecimais separados por “:”. Para encurtar: (1) zeros à esquerda de cada grupo podem sumir (<code>0db8</code> vira <code>db8</code>); (2) uma única sequência de grupos zerados pode virar <code>::</code>. Só pode haver um <code>::</code> por endereço, senão não dá para saber quantos zeros cada um representa.</p>
-      </div>
-
-      <div class="tool">
-        <div class="row">
-          <label for="addrIn" class="eyebrow" style="flex-basis:100%">Endereço IPv6</label>
-          <input type="text" id="addrIn" value="fe80::200:ff:feaa:0" spellcheck="false" autocomplete="off">
-          <button class="btn primary" id="addrGo">Analisar</button>
+      <div class="bench" aria-label="Demonstração animada: um ataque de RA falsa e a defesa com RA Guard">
+        <div class="bench-card">
+          <div class="bar"><i style="background:#FF8C82"></i><i style="background:#F3A55E"></i><i style="background:#5CD39B"></i><span class="title">laboratorio — missão 11 · RA falsa</span><span class="live">AO VIVO</span></div>
+          <svg class="topo" id="topo" viewBox="0 0 560 230" role="img" aria-label="Topologia: Host A e Atacante ligados a um switch, que leva ao roteador e ao servidor web"></svg>
+          <div class="term" id="term" aria-hidden="true"></div>
         </div>
-        <div class="chips" id="addrChips"></div>
-        <div id="addrOut"></div>
+        <div class="caption" aria-live="polite"><span class="step" id="capStep">01/05</span><p id="capText">O Host A acessa um site. O pacote sai, passa pelo roteador e chega ao servidor.</p></div>
+        <div class="dots" id="dots" role="group" aria-label="Etapas da demonstração"></div>
+      </div>
+    </div>
+  </section>
 
-        <div class="tool-sub">
-          <h3>Do MAC ao endereço: EUI-64</h3>
-          <p class="explain">No SLAAC (Cap. 1), o aparelho pode montar o identificador da interface a partir do seu endereço MAC: divide o MAC ao meio, insere <code>ff:fe</code> no meio e inverte o 7º bit. O exemplo padrão é o mesmo MAC usado nas capturas do livro.</p>
-          <div class="row">
-            <label for="macIn" class="eyebrow" style="flex-basis:100%">Endereço MAC</label>
-            <input type="text" id="macIn" value="00:00:00:aa:00:00" spellcheck="false" autocomplete="off">
-            <button class="btn" id="macGo">Gerar</button>
-          </div>
-          <div id="macOut"></div>
-          <div class="callout sec"><span class="tag">Privacidade</span><p>O EUI-64 expõe o MAC da placa de rede, e o identificador é o mesmo em qualquer rede, o que permite rastrear o aparelho. Por isso sistemas modernos usam endereços temporários e aleatórios (extensões de privacidade, RFC 4941 / RFC 7217). Isso não está no livro, mas é bom saber.</p></div>
+  <section class="s alt" id="como-funciona">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="eyebrow">Como funciona</span>
+        <h2>Leia. Pratique. Explique.</h2>
+        <p>O método é simples: entender a teoria em linguagem de gente, ver acontecer com seus próprios comandos e, no fim, conseguir ensinar para outra pessoa.</p>
+      </div>
+      <div class="flow">
+        <div class="fstep"><span class="n">1</span><h3>Leia o guia</h3><p>O livro <i>Laboratório de IPv6</i> do NIC.br resumido para iniciantes: endereços, NDP, protocolos e camadas, firewall e IPsec, com quiz e glossário.</p></div>
+        <div class="fstep"><span class="n">2</span><h3>Pratique no terminal</h3><p>Digite <code>ping -6</code>, <code>ip -6 neigh</code>, <code>tcpdump</code>. Veja os pacotes andando pela rede e abra cada um, camada por camada, como no Wireshark.</p></div>
+        <div class="fstep"><span class="n">3</span><h3>Explique para alguém</h3><p>Cada missão termina com um roteiro de “como explicar para outra pessoa” e perguntas que só passam quando você realmente entendeu.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="s" id="missoes">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="eyebrow">15 missões</span>
+        <h2>Do primeiro endereço ao primeiro ataque.</h2>
+        <p>Comece pelos fundamentos ou vá direto para a segurança. Cada missão abre a rede pronta, com dicas em cada passo.</p>
+      </div>
+      <div class="tabs" id="mtabs" role="group" aria-label="Filtrar missões">
+        <button data-g="all" aria-pressed="true">Todas</button>
+        <button data-g="f" aria-pressed="false">Fundamentos</button>
+        <button data-g="s" aria-pressed="false">Segurança</button>
+      </div>
+      <div class="missions" id="mgrid"></div>
+    </div>
+  </section>
+
+  <section class="s alt" id="demo">
+    <div class="wrap demo">
+      <div class="copy">
+        <span class="eyebrow">Missão 13 · texto claro x cifrado</span>
+        <h2 style="font-size:clamp(2rem,4vw,3rem)">Veja o que o atacante vê.</h2>
+        <p>O mesmo login, feito de dois jeitos, capturado por alguém no meio do caminho. Troque o protocolo e compare.</p>
+        <div class="seg" role="group" aria-label="Protocolo">
+          <button class="bad" data-p="telnet" aria-pressed="true">Telnet · 23</button>
+          <button class="good" data-p="ssh" aria-pressed="false">SSH · 22</button>
         </div>
+        <div class="verdict" id="verdict"></div>
+        <a class="btn" href="laboratorio.html#missao-13" style="align-self:flex-start">Fazer a missão completa <span class="arr">→</span></a>
       </div>
-
-      <div class="tbl-wrap"><table>
-        <thead><tr><th>Tipo</th><th>Prefixo</th><th>Para que serve</th><th>Equivalente no IPv4</th></tr></thead>
-        <tbody>
-          <tr><td>Global unicast</td><td><code>2000::/3</code></td><td>Endereço público, alcançável pela Internet</td><td>IP público</td></tr>
-          <tr><td>Link-local</td><td><code>fe80::/10</code></td><td>Só vale no próprio enlace. Todo aparelho com IPv6 tem um. Usado pelo NDP e pelo roteamento</td><td>169.254.x.x (aproximado)</td></tr>
-          <tr><td>Unique local (ULA)</td><td><code>fc00::/7</code></td><td>Rede interna, não roteado na Internet</td><td>10.x, 192.168.x</td></tr>
-          <tr><td>Multicast</td><td><code>ff00::/8</code></td><td>Um para vários. <b>Não existe broadcast no IPv6</b></td><td>Broadcast / 224.x</td></tr>
-          <tr><td>Loopback</td><td><code>::1</code></td><td>A própria máquina</td><td>127.0.0.1</td></tr>
-          <tr><td>Não especificado</td><td><code>::</code></td><td>“Ainda não tenho endereço” (usado no DAD)</td><td>0.0.0.0</td></tr>
-          <tr><td>Documentação</td><td><code>2001:db8::/32</code></td><td>Reservado para exemplos e livros. Usado em todo o laboratório</td><td>192.0.2.0/24</td></tr>
-        </tbody>
-      </table></div>
-      <div class="lab-links"><span class="eyebrow">Praticar no laboratório</span><div><a class="lab-link" href="laboratorio.html#missao-1"><b>1</b>Endereços e prefixos →</a></div></div>
-      <button class="done-toggle" data-done="enderecos" aria-pressed="false">Marcar como estudado</button>
-    </section>
-
-    <!-- PROTOCOLOS -->
-    <section id="protocolos">
-      <div class="sec-head">
-        <p class="eyebrow">Base de redes · complemento ao livro</p>
-        <h2>Protocolos e camadas</h2>
-        <p class="lead">O IPv6 é uma peça de um sistema maior. Para entender um ataque ou um defeito de rede, a primeira pergunta é sempre: <b>em que camada isso acontece e qual protocolo está envolvido?</b></p>
+      <div class="cap" aria-live="polite">
+        <div class="bar"><i style="background:#FF8C82"></i><i style="background:#F3A55E"></i><i style="background:#5CD39B"></i><span class="title">root@atacante:~# tcpdump</span></div>
+        <div class="cap-wrap"><table><thead><tr><th>Nº</th><th>Origem</th><th>Destino</th><th>Tipo</th><th>Info</th></tr></thead><tbody id="capRows"></tbody></table></div>
+        <div class="detail" id="capDetail"></div>
       </div>
-      <div class="prose">
-        <p>Um <b>protocolo</b> é um conjunto de regras que permite que aparelhos de fabricantes e sistemas diferentes conversem. Ele define três coisas: a <b>sintaxe</b> (o formato e a ordem dos dados), a <b>semântica</b> (o que cada parte significa) e o <b>timing</b> (em que ritmo a conversa acontece).</p>
-        <p>Duas pegadinhas comuns: “WWW” não é protocolo (a web usa HTTP), e “ping” também não. O ping é um programa que envia mensagens <b>ICMP</b>, da camada 3, e por isso não usa porta.</p>
+    </div>
+  </section>
+
+  <section class="s" id="para-quem">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="eyebrow">Para quem é</span>
+        <h2>Feito para quem está começando. Útil para quem já ensina.</h2>
       </div>
-
-      <div class="tool">
-        <div class="sec-head">
-          <p class="eyebrow">Interativo · modelo OSI</p>
-          <h3>As 7 camadas, de baixo para cima</h3>
-          <p class="explain">Clique numa camada. O modelo OSI é a referência para falar de redes (“é problema de camada 3”). Na prática, a Internet usa a pilha TCP/IP, que junta as mesmas funções em 4 camadas.</p>
-        </div>
-        <div class="osi">
-          <div><div class="osi-stack" id="osiStack"></div>
-            <div class="osi-map"><span>TCP/IP: Aplicação = OSI 5, 6 e 7</span><span>Transporte = OSI 4 · Internet = OSI 3</span><span>Acesso à rede = OSI 1 e 2</span></div></div>
-          <div class="osi-detail" id="osiDetail" aria-live="polite"></div>
-        </div>
+      <div class="who">
+        <div class="wcard"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15 20 7l16 8-16 8z"/><path d="M10 18v8c0 3 5 6 10 6s10-3 10-6v-8"/></svg><h3>Estudantes</h3><p>Aprendeu redes só com IPv4? Aqui você entende o que muda no IPv6 e por que isso importa para a segurança, sem instalar nada.</p></div>
+        <div class="wcard"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 4 6 10v9c0 9 6 15 14 17 8-2 14-8 14-17v-9z"/><path d="m14 20 4 4 8-8"/></svg><h3>Quem quer entrar em cibersegurança</h3><p>Ataques de verdade, como RA falsa, cache envenenado e DoS, simulados com segurança e sempre acompanhados da defesa.</p></div>
+        <div class="wcard"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="7" width="30" height="20" rx="2"/><path d="M14 33h12M20 27v6M11 14h10M11 19h16"/></svg><h3>Professores</h3><p>Cada missão tem um link próprio, como <code>/laboratorio.html#missao-11</code>. Uma aula prática pronta, que roda no navegador dos alunos.</p></div>
       </div>
+    </div>
+  </section>
 
-      <div class="prose"><h3>O que muda do IPv4 para o IPv6</h3><p>Muitos protocolos do IPv4 têm um equivalente no IPv6. Esta tabela liga o que você já conhece ao que o livro ensina.</p></div>
-      <div class="tbl-wrap"><table>
-        <thead><tr><th>Função</th><th>IPv4</th><th>IPv6</th></tr></thead>
-        <tbody>
-          <tr><td>Endereço</td><td>32 bits, decimal: <code>192.168.56.101/24</code></td><td>128 bits, hexadecimal: <code>2001:db8::a/64</code></td></tr>
-          <tr><td>Descobrir o MAC do vizinho</td><td>ARP, por broadcast</td><td>NDP: NS e NA, por multicast, dentro do ICMPv6</td></tr>
-          <tr><td>Configuração automática</td><td>DHCP: Discover, Offer, Request, Ack (UDP 67/68)</td><td>SLAAC pela RA e/ou DHCPv6: Solicit, Advertise, Request, Reply (UDP 546/547)</td></tr>
-          <tr><td>Gateway padrão</td><td>Entregue pelo DHCP</td><td>Anunciado pela RA (o DHCPv6 não entrega gateway)</td></tr>
-          <tr><td>Mensagens de erro e teste</td><td>ICMP</td><td>ICMPv6: essencial, não pode ser todo bloqueado</td></tr>
-          <tr><td>Grupos multicast</td><td>IGMP</td><td>MLD, dentro do ICMPv6</td></tr>
-          <tr><td>Falar com todos da rede</td><td>Broadcast</td><td>Não existe broadcast: multicast <code>ff02::1</code></td></tr>
-          <tr><td>Nome → endereço (DNS)</td><td>Registro A</td><td>Registro AAAA</td></tr>
-          <tr><td>Pacote grande demais</td><td>Roteador pode fragmentar</td><td>Só a origem fragmenta, após ICMPv6 Packet Too Big</td></tr>
-          <tr><td>Falta de endereços</td><td>NAT e CGNAT</td><td>Sobra endereço: o firewall stateful faz o papel de proteção</td></tr>
-        </tbody>
-      </table></div>
-
-      <div class="prose"><h3>TCP x UDP: dois jeitos de entregar</h3></div>
-      <div class="vs">
-        <div class="card"><p class="eyebrow">TCP · como uma ligação telefônica</p><ul>
-          <li>Combina antes de falar: aperto de mão <b>SYN → SYN-ACK → ACK</b>.</li>
-          <li>Confirma o que recebeu, reenvia o que se perdeu e entrega em ordem.</li>
-          <li>Mais confiável, mais pacotes. Usado em sites (HTTP/HTTPS), e-mail, SSH, transferência de arquivos.</li></ul></div>
-        <div class="card"><p class="eyebrow">UDP · como mandar uma mensagem</p><ul>
-          <li>Envia e pronto: sem conexão, sem confirmação, sem reordenar.</li>
-          <li>Menos atraso e menos sobrecarga. Se algo se perde, a aplicação que resolva.</li>
-          <li>Usado em DNS, voz sobre IP, vídeo ao vivo, jogos, SNMP. Uma mesma consulta DNS custou 2 pacotes em UDP e 10 em TCP.</li></ul></div>
+  <section class="s alt" id="base">
+    <div class="wrap">
+      <div class="s-head">
+        <span class="eyebrow">De onde vem o conteúdo</span>
+        <h2>Fontes sérias, explicadas do jeito simples.</h2>
       </div>
-      <div class="callout analog"><span class="tag">Protocolo x porta</span><p>O <b>protocolo</b> é a regra da conversa. A <b>porta</b> é o número que diz qual programa, dentro do aparelho, deve receber o pacote. Pense no IP como o endereço do prédio e na porta como o número do apartamento: no mesmo servidor, o site atende na 443, o SSH na 22 e o DNS na 53.</p></div>
-
-      <div class="tool">
-        <div class="sec-head">
-          <p class="eyebrow">Consulta rápida</p>
-          <h3>Protocolos e portas</h3>
-          <p class="explain">Busque por nome, porta ou finalidade. A coluna Segurança mostra o que trafega em texto claro: quem estiver no caminho consegue ler.</p>
-        </div>
-        <div class="row">
-          <input type="text" id="portQ" placeholder="Buscar (ex.: 22, e-mail, DNS)" aria-label="Buscar protocolo ou porta" style="font-family:var(--f-body)">
-        </div>
-        <div class="chips" id="portF"></div>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>Protocolo</th><th>Camada</th><th>Porta padrão</th><th>Para que serve</th><th>Segurança</th></tr></thead>
-          <tbody id="portT"></tbody>
-        </table></div>
-        <p class="explain">As portas seguem o registro oficial da IANA e podem ser alteradas na configuração. Mudar a porta não protege nada: um scanner a encontra em segundos.</p>
+      <div class="base">
+        <a href="https://lab.ipv6.br" target="_blank" rel="noopener"><small>Livro base</small><b>Laboratório de IPv6 · NIC.br</b><span>Os roteiros práticos usados nos cursos oficiais do IPv6.br.</span></a>
+        <a href="https://ipv6.br" target="_blank" rel="noopener"><small>Curso gratuito</small><b>IPv6.br</b><span>O projeto de disseminação do IPv6 no Brasil, com material teórico.</span></a>
+        <a href="https://www.opservices.com.br/protocolos-de-rede/" target="_blank" rel="noopener"><small>Protocolos e camadas</small><b>OpServices</b><span>Base da seção de protocolos e das missões 7, 9 e 13.</span></a>
       </div>
+    </div>
+  </section>
 
-      <div class="grid2">
-        <div class="callout sec"><span class="tag">SSL é obsoleto</span><p>Todas as versões do SSL estão obsoletas. O que protege as conexões hoje é o <b>TLS 1.2 ou 1.3</b>, mesmo quando alguém fala “certificado SSL”. O TLS garante confidencialidade, integridade e autenticidade.</p></div>
-        <div class="callout sec"><span class="tag">SNMP com “public”</span><p>SNMP v1 e v2c enviam a senha (community) em texto claro, e ainda é comum encontrar a community padrão <code>public</code>. Use SNMPv3, que tem autenticação e criptografia.</p></div>
-        <div class="callout tip"><span class="tag">NTP e investigação</span><p>Relógios fora de sincronia quebram certificados TLS e autenticação, e tornam impossível montar a linha do tempo de um incidente a partir dos logs. NTP (UDP 123) é infraestrutura de segurança.</p></div>
-        <div class="callout tip"><span class="tag">Diagnóstico por camada</span><p>Camada 2: <code>ip neigh</code> mostra FAILED. Camada 3: “Network is unreachable” na hora. Camada 4: RST imediato = serviço parado; silêncio = firewall. Camada 7: a rede entrega, mas a aplicação erra (HTTP 500). Falha de DNS parece queda de internet: ping no IP separa os casos.</p></div>
+  <section class="s">
+    <div class="wrap">
+      <div class="final">
+        <div class="grid-bg"></div>
+        <h2>Pronto para ver o primeiro <span>pacote</span>?</h2>
+        <p>A missão 1 leva uns 5 minutos. Você só precisa do navegador e de curiosidade. Comece com <code>ipcalc 192.168.56.101/24</code>.</p>
+        <div class="cta"><a class="btn primary" href="laboratorio.html#missao-1">Abrir o laboratório <span class="arr">→</span></a><a class="btn" href="guia.html">Começar pelo guia</a></div>
       </div>
-      <p class="explain">Seção baseada no artigo <a href="https://www.opservices.com.br/protocolos-de-rede/" target="_blank" rel="noopener">“Protocolos de rede”, da OpServices</a>, adaptada para o contexto de IPv6 e segurança. Pratique no Laboratório IPv6 (missões <a href="laboratorio.html#missao-7">7</a>, <a href="laboratorio.html#missao-9">9</a> e <a href="laboratorio.html#missao-13">13</a>).</p>
-      <div class="lab-links"><span class="eyebrow">Praticar no laboratório</span><div><a class="lab-link" href="laboratorio.html#missao-7"><b>7</b>Portas, TCP e UDP →</a><a class="lab-link" href="laboratorio.html#missao-9"><b>9</b>A internet caiu? →</a><a class="lab-link" href="laboratorio.html#missao-13"><b>13</b>Texto claro x cifrado →</a></div></div>
-      <button class="done-toggle" data-done="protocolos" aria-pressed="false">Marcar como estudado</button>
-    </section>
+    </div>
+  </section>
+</main>
 
-    <!-- CAP 1 -->
-    <section id="basico">
-      <div class="sec-head">
-        <p class="eyebrow">Capítulo 1 · 10 experiências</p>
-        <h2>Funcionalidades básicas</h2>
-        <p class="lead">Como um aparelho descobre vizinhos, encontra o roteador, ganha um endereço e envia pacotes grandes. Tudo isso funciona diferente do IPv4, e é exatamente aí que ficam as superfícies de ataque.</p>
-      </div>
-      <div class="callout analog"><span class="tag">Analogia</span><p>O <b>NDP (Neighbor Discovery Protocol)</b> é o “porteiro do prédio”. Ele responde perguntas como “quem mora no apartamento X?”, “onde fica a saída?” e “esse número de apartamento já está ocupado?”. Ele substitui o ARP, o ICMP Router Discovery e o Redirect do IPv4, e usa mensagens <b>ICMPv6</b>. O detalhe crítico: <b>por padrão, o porteiro acredita em qualquer um</b>.</p></div>
-      <div class="exps" id="exps-1"></div>
-      <div class="lab-links"><span class="eyebrow">Praticar no laboratório</span><div><a class="lab-link" href="laboratorio.html#missao-2"><b>2</b>Descobrir um vizinho →</a><a class="lab-link" href="laboratorio.html#missao-3"><b>3</b>Entrar na rede →</a><a class="lab-link" href="laboratorio.html#missao-4"><b>4</b>Endereço duplicado →</a><a class="lab-link" href="laboratorio.html#missao-8"><b>8</b>Pacotes grandes →</a></div></div>
-      <button class="done-toggle" data-done="basico" aria-pressed="false">Marcar como estudado</button>
-    </section>
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Voltar ao topo"><svg viewBox="0 0 512 512" aria-hidden="true"><path d="M318 318 L408 408" stroke="#F3A55E" stroke-width="56" stroke-linecap="round"/><circle cx="226" cy="226" r="128" fill="#05080F" stroke="#F3A55E" stroke-width="44"/><text x="226" y="256" text-anchor="middle" font-family="ui-monospace,monospace" font-weight="700" font-size="96" fill="#F3A55E">v6</text></svg><span>IPv6 na Prática<small>Estudo Hacking</small></span></a>
+    <nav aria-label="Rodapé"><a href="guia.html">Guia de estudos</a><a href="laboratorio.html">Laboratório</a><a href="guia.html#protocolos">Protocolos e camadas</a><a href="guia.html#quiz">Quiz</a></nav>
+    <p class="fine">Material de estudo independente, sem vínculo oficial com o NIC.br ou a OpServices. As ferramentas de ataque do laboratório são simuladas e não executam nada de verdade. O site não coleta dados: seu progresso fica só no seu navegador.</p>
+  </div>
+</footer>
 
-    <!-- SIMULADOR -->
-    <section id="simulador">
-      <div class="sec-head">
-        <p class="eyebrow">Simulador interativo · Experiências 1.1 a 1.4 e 3.1</p>
-        <h2>Veja o NDP acontecendo</h2>
-        <p class="lead">Escolha um cenário e avance passo a passo. Pacotes multicast vão para todos no enlace. Pacotes unicast vão para um só destino.</p>
-      </div>
-      <div class="tool">
-        <div class="row" id="simScen" role="group" aria-label="Cenários"></div>
-        <div class="sim-wrap"><svg class="sim" id="sim" viewBox="0 0 720 230" role="img" aria-label="Diagrama de rede local com quatro nós"></svg></div>
-        <div class="sim-log" id="simLog" aria-live="polite"></div>
-        <div class="sim-controls">
-          <span class="eyebrow" id="simCount"></span>
-          <div class="row"><button class="btn" id="simReset">Recomeçar</button><button class="btn primary" id="simNext">Próximo passo</button></div>
-        </div>
-      </div>
-      <div class="lab-links"><span class="eyebrow">Praticar no laboratório</span><div><a class="lab-link" href="laboratorio.html#missao-2"><b>2</b>Descobrir um vizinho →</a><a class="lab-link" href="laboratorio.html#missao-10"><b>10</b>Ataque DoS ao DAD →</a></div></div>
-      <button class="done-toggle" data-done="simulador" aria-pressed="false">Marcar como estudado</button>
-    </section>
-
-    <!-- CAP 3 SEGURANÇA -->
-    <section id="seguranca">
-      <div class="sec-head">
-        <p class="eyebrow">Capítulo 3 · 4 experiências · o mais importante para você</p>
-        <h2>Segurança</h2>
-        <p class="lead">O IPv6 tem as mesmas fraquezas conceituais do IPv4, só que em lugares novos. O capítulo mostra um ataque real, como montar um firewall que não quebra a rede e como criptografar o tráfego com IPsec.</p>
-      </div>
-
-      <div class="exps" id="exps-3"></div>
-
-      <div class="tool">
-        <div class="sec-head">
-          <p class="eyebrow">Interativo · Experiência 3.2</p>
-          <h3>Monte um firewall ICMPv6 sem quebrar a rede</h3>
-          <p class="explain">No IPv4 era comum bloquear todo o ICMP. No IPv6 isso derruba a rede, porque o ICMPv6 faz o papel do ARP, do IGMP e mais. Teste: bloqueie mensagens e veja o que para de funcionar. A recomendação segue a RFC 4890, usada no livro.</p>
-        </div>
-        <div class="row"><button class="btn" id="fwAll">Bloquear tudo (estilo IPv4)</button><button class="btn" id="fwRec">Aplicar recomendação RFC 4890</button></div>
-        <div class="fw" id="fw"></div>
-        <div id="fwStatus" aria-live="polite"></div>
-      </div>
-
-      <div class="tool">
-        <div class="sec-head">
-          <p class="eyebrow">Experiências 3.3 e 3.4</p>
-          <h3>IPsec: o que cada cabeçalho protege</h3>
-          <p class="explain">No laboratório, o mesmo ping é capturado três vezes: sem IPsec, só com AH e com ESP. Compare o que um atacante veria no Wireshark.</p>
-        </div>
-        <div class="row" role="group" aria-label="Modo IPsec" id="ipsecBtns">
-          <button class="btn" data-m="none" aria-pressed="true">Sem IPsec</button>
-          <button class="btn" data-m="ah" aria-pressed="false">AH</button>
-          <button class="btn" data-m="esp" aria-pressed="false">ESP (transporte)</button>
-          <button class="btn" data-m="tun" aria-pressed="false">ESP (túnel)</button>
-        </div>
-        <div class="pkt-diagram" id="ipsecPkt"></div>
-        <div class="grid2" id="ipsecInfo"></div>
-      </div>
-
-      <div class="grid2">
-        <div class="card"><p class="eyebrow">AH · Authentication Header</p><p>Garante <b>autenticidade</b> (veio de quem diz que veio) e <b>integridade</b> (ninguém alterou). <b>Não esconde</b> o conteúdo.</p></div>
-        <div class="card"><p class="eyebrow">ESP · Encapsulating Security Payload</p><p>Adiciona <b>confidencialidade</b>: criptografa os dados. Também pode autenticar. É o mais usado na prática.</p></div>
-        <div class="card"><p class="eyebrow">Modo transporte</p><p>Protege a conversa <b>entre duas máquinas</b> (Exp. 3.3). O cabeçalho IP original continua visível.</p></div>
-        <div class="card"><p class="eyebrow">Modo túnel</p><p>Configurado <b>entre roteadores de borda</b>, protege todo o tráfego entre duas redes (Exp. 3.4). É uma VPN site a site.</p></div>
-      </div>
-      <div class="callout note"><span class="tag">Chaves e bancos de dados</span><p>O IPsec guarda duas tabelas: a <b>SPD</b> (Security Policy Database, “quais pacotes devem ser protegidos e como”) e a <b>SAD</b> (Security Association Database, “quais chaves e algoritmos usar”). No livro as chaves são criadas à mão com <code>setkey</code> para fins didáticos. Em produção usa-se o <b>IKE</b>, que troca chaves com segurança em duas fases, usando chave pré-compartilhada ou certificados X.509.</p></div>
-      <div class="lab-links"><span class="eyebrow">Praticar no laboratório</span><div><a class="lab-link" href="laboratorio.html#missao-10"><b>10</b>Ataque DoS ao DAD →</a><a class="lab-link" href="laboratorio.html#missao-11"><b>11</b>RA falsa →</a><a class="lab-link" href="laboratorio.html#missao-12"><b>12</b>Cache envenenado →</a><a class="lab-link" href="laboratorio.html#missao-14"><b>14</b>Firewall ICMPv6 →</a><a class="lab-link" href="laboratorio.html#missao-15"><b>15</b>IPsec: AH x ESP →</a></div></div>
-      <button class="done-toggle" data-done="seguranca" aria-pressed="false">Marcar como estudado</button>
-    </section>
-
-    <!-- CAP 2 -->
-    <section id="servicos">
-      <div class="sec-head">
-        <p class="eyebrow">Capítulo 2 · 8 experiências</p>
-        <h2>Serviços</h2>
-        <p class="lead">DNS, servidores web, proxy e compartilhamento de arquivos com IPv6. A configuração é parecida com a do IPv4, mas os detalhes que mudam são os que geram falhas.</p>
-      </div>
-      <div class="callout sec"><span class="tag">Lição de segurança do capítulo</span><p>O Apache já escuta em IPv6 <b>sem nenhuma configuração</b> (Exp. 2.3). Se o firewall só tem regras IPv4 (<code>iptables</code>) e ninguém configurou o <code>ip6tables</code>, o serviço fica exposto pelo IPv6. Sempre verifique em quais endereços cada serviço escuta, com <code>ss -tlnp</code>.</p></div>
-      <div class="exps" id="exps-2"></div>
-      <div class="lab-links"><span class="eyebrow">Praticar no laboratório</span><div><a class="lab-link" href="laboratorio.html#missao-6"><b>6</b>Nomes e DNS →</a><a class="lab-link" href="laboratorio.html#missao-5"><b>5</b>Saindo para a Internet →</a></div></div>
-      <button class="done-toggle" data-done="servicos" aria-pressed="false">Marcar como estudado</button>
-    </section>
-
-    <!-- CAP 4 -->
-    <section id="transicao">
-      <div class="sec-head">
-        <p class="eyebrow">Capítulo 4 · 7 experiências</p>
-        <h2>Técnicas de transição</h2>
-        <p class="lead">IPv4 e IPv6 não conversam entre si. As técnicas de transição fazem a ponte de duas formas: <b>túneis</b> (um protocolo vai “embrulhado” dentro do outro) ou <b>tradução</b> (o pacote é reescrito de um protocolo para o outro).</p>
-      </div>
-      <div class="callout analog"><span class="tag">Analogia</span><p>Túnel é colocar uma carta dentro de outro envelope para passar por um correio que só aceita aquele formato. Tradução é reescrever a carta em outro idioma no meio do caminho.</p></div>
-      <div class="tbl-wrap"><table>
-        <thead><tr><th>Técnica</th><th>Tipo</th><th>Problema que resolve</th><th>Quem usa</th></tr></thead>
-        <tbody>
-          <tr><td>6in4</td><td>Túnel manual</td><td>Levar IPv6 através de uma rede só IPv4</td><td>Ligações ponto a ponto</td></tr>
-          <tr><td>GRE</td><td>Túnel manual</td><td>Mesmo objetivo, com encapsulamento genérico</td><td>Ligações ponto a ponto</td></tr>
-          <tr><td>DS-Lite</td><td>Túnel (IPv4 em IPv6)</td><td>Provedor com rede só IPv6 entrega IPv4 compartilhado ao cliente</td><td>Provedores</td></tr>
-          <tr><td>6rd</td><td>Túnel (IPv6 em IPv4)</td><td>Provedor com rede IPv4 entrega IPv6 rapidamente</td><td>Provedores</td></tr>
-          <tr><td>NAT64 + DNS64</td><td>Tradução</td><td>Cliente só IPv6 acessa site só IPv4</td><td>Provedores, redes móveis</td></tr>
-          <tr><td>464XLAT</td><td>Dupla tradução</td><td>Apps que só sabem IPv4 rodando numa rede só IPv6</td><td>Operadoras de celular</td></tr>
-        </tbody>
-      </table></div>
-      <div class="callout sec"><span class="tag">Olhar de segurança</span><p>Túneis escondem o tráfego real dentro de outro protocolo. Um firewall que só inspeciona IPv4 vê “protocolo 41” (6in4) ou GRE e deixa passar um tráfego IPv6 que ele não analisa. Boas práticas: bloquear túneis que a organização não usa (protocolo 41, GRE, Teredo na porta UDP 3544) e aplicar as mesmas políticas ao tráfego desencapsulado.</p></div>
-      <div class="exps" id="exps-4"></div>
-      <button class="done-toggle" data-done="transicao" aria-pressed="false">Marcar como estudado</button>
-    </section>
-
-    <!-- CAP 5 -->
-    <section id="roteamento">
-      <div class="sec-head">
-        <p class="eyebrow">Capítulo 5 · 2 experiências</p>
-        <h2>Roteamento</h2>
-        <p class="lead">Como os roteadores aprendem os caminhos sozinhos. O <b>OSPFv3</b> funciona dentro de uma organização. O <b>BGP</b> conecta as organizações que formam a Internet.</p>
-      </div>
-      <div class="callout analog"><span class="tag">Analogia</span><p>OSPF é o GPS dentro de um condomínio: todos os roteadores conhecem o mapa inteiro e calculam o caminho mais curto. BGP é a diplomacia entre países (chamados <b>Sistemas Autônomos</b>, ou AS): cada um anuncia quais redes alcança e decide, por política, por onde prefere mandar e receber tráfego.</p></div>
-      <div class="exps" id="exps-5"></div>
-      <div class="callout sec"><span class="tag">Olhar de segurança (extra)</span><p>O BGP confia nos anúncios dos vizinhos. Se um AS anuncia por engano ou de propósito redes que não são dele, o tráfego da Internet pode ser desviado (<i>sequestro de rotas</i>). Defesas: filtros de prefixo nas sessões eBGP e validação de origem com RPKI. O OSPF deve usar autenticação entre vizinhos (no OSPFv3, via IPsec ou trailer de autenticação) para evitar roteadores falsos.</p></div>
-      <button class="done-toggle" data-done="roteamento" aria-pressed="false">Marcar como estudado</button>
-    </section>
-
-    <!-- QUIZ + REFERÊNCIAS -->
-    <section id="quiz">
-      <div class="sec-head">
-        <p class="eyebrow">Revisão</p>
-        <h2>Teste o que você aprendeu</h2>
-        <p class="lead">Catorze perguntas sobre o livro e sobre protocolos, com foco em segurança. Cada resposta mostra a explicação.</p>
-      </div>
-      <div class="score" id="score">0 de 10 respondidas</div>
-      <div class="quiz" id="quizBox"></div>
-      <div class="row"><button class="btn" id="quizReset">Refazer quiz</button></div>
-
-      <div class="sec-head" style="margin-top:24px">
-        <p class="eyebrow">Apêndice C · cola de comandos</p>
-        <h3>Comandos que você vai usar em todo laboratório</h3>
-      </div>
-      <div class="cmds" id="cmds"></div>
-
-      <div class="sec-head" style="margin-top:24px">
-        <p class="eyebrow">Lista de abreviaturas do livro</p>
-        <h3>Glossário</h3>
-      </div>
-      <input type="text" id="glossQ" placeholder="Buscar sigla ou termo (ex.: DAD, túnel, DNS)" aria-label="Buscar no glossário" style="font-family:var(--f-body)">
-      <div class="gloss" id="gloss"></div>
-      <button class="done-toggle" data-done="quiz" aria-pressed="false">Marcar como estudado</button>
-    </section>
-
-    <footer>Resumo didático de “Laboratório de IPv6: aprenda na prática usando um emulador de redes”, equipe IPv6.br / NIC.br (2015). Notas marcadas como “extra” complementam o livro. A seção Protocolos e camadas usa como base o artigo <a href="https://www.opservices.com.br/protocolos-de-rede/" target="_blank" rel="noopener">“Protocolos de rede”</a> da OpServices. Para praticar, baixe a máquina virtual em <a href="http://lab.ipv6.br" target="_blank" rel="noopener">lab.ipv6.br</a> e veja o curso gratuito em <a href="http://ipv6.br" target="_blank" rel="noopener">ipv6.br</a>.</footer>
-  </main>
-</div>
-<script src="js/guia.js" defer></script>
+<script src="js/inicio.js" defer></script>
 </body>
 </html>

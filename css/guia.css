@@ -262,3 +262,7 @@ footer{color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);padd
 .hero-cta a.big{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:10px;background:var(--accent);color:var(--accent-ink);font-weight:700;text-decoration:none}
 .hero-cta span{color:var(--muted);font-size:.92rem}
 @media (max-width:900px){.nav-lab{display:none}}
+
+.home-link{font:600 .85rem var(--f-body);color:var(--accent);text-decoration:none}
+.home-link:hover{text-decoration:underline}
+@media (max-width:900px){.home-link{display:none}}

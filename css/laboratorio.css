@@ -173,3 +173,4 @@ table.cap{border-collapse:collapse;width:100%;font:500 .78rem var(--f-mono);min-
 
 .back{font:600 .85rem var(--f-body);color:var(--accent);text-decoration:none;display:inline-flex;gap:6px;align-items:center;margin-bottom:4px}
 .back:hover{text-decoration:underline}
+.crumbs{display:flex;gap:18px;flex-wrap:wrap}
