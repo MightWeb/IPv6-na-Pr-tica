@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Laboratório IPv6 · IPv6 na Prática</title>
+<meta name="description" content="Laboratório interativo de IPv6: 15 missões com terminal simulado, topologia animada e captura de pacotes, incluindo ataques e defesas.">
+<meta property="og:title" content="Laboratório IPv6 · IPv6 na Prática">
+<meta property="og:description" content="Laboratório interativo de IPv6: 15 missões com terminal simulado, topologia animada e captura de pacotes, incluindo ataques e defesas.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#2347C9">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="js/tema.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/laboratorio.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <a class="back" href="index.html">← Guia IPv6 na Prática</a>
+      <h1>Laboratório <span>IPv6</span></h1>
+    </div>
+    <div class="hdr-right">
+      <div class="prog"><div class="bar"><i id="pbar"></i></div><span id="ptext">0 de 12 missões</span></div>
+      <div class="theme" role="group" aria-label="Tema">
+        <button data-t="system" aria-pressed="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="2.5" width="13" height="9" rx="1.5"/><path d="M5.5 14h5"/></svg>Sistema</button>
+        <button data-t="light" aria-pressed="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="8" r="3"/><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6L13 13M3 13l1.4-1.4M11.6 4.4L13 3"/></svg>Claro</button>
+        <button data-t="dark" aria-pressed="false"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M13.5 9.5A6 6 0 1 1 6.5 2.5a4.7 4.7 0 0 0 7 7z"/></svg>Escuro</button>
+      </div>
+    </div>
+  </header>
+
+  <details class="basics" id="basics" open>
+    <summary>Antes de começar: host, nome, endereço IP e prefixo <span class="eyebrow">ocultar / mostrar</span></summary>
+    <div class="bgrid">
+      <div class="bc"><h4>Host</h4><p>Qualquer aparelho com endereço IP: seu notebook, seu celular, uma impressora ou o servidor de um site. No laboratório, <b>Host A</b> e <b>Host B</b> são computadores da mesma rede local, como dois aparelhos na Wi-Fi da sua casa.</p></div>
+      <div class="bc"><h4>Nome (domínio)</h4><p><code>www.claude.com</code> não é um host: é um <b>nome</b>, um apelido fácil de lembrar. O DNS traduz esse nome para o endereço IP do servidor (o host de verdade). É o assunto da missão 6.</p><p class="ex">nome → DNS → endereço IP → servidor</p></div>
+      <div class="bc"><h4>Endereço IP</h4><p>O número que os pacotes realmente usam. Funciona como um endereço de correspondência: uma parte diz <b>a rua</b> (a rede) e a outra diz <b>o número da casa</b> (o aparelho).</p></div>
+      <div class="bc"><h4>O que é o /24?</h4>
+        <div class="addrbits"><span class="n">192.168.56</span><span>.</span><span class="h">101</span><span style="color:var(--muted)">/24</span></div>
+        <p>A barra diz quantos bits, contando da esquerda, são <span style="color:var(--accent);font-weight:700">a rua (rede)</span>. Cada número tem 8 bits, então /24 = os 3 primeiros números. O que sobra é <span style="color:var(--iid);font-weight:700">o aparelho</span>: de .1 até .254. A missão 1 mostra isso bit a bit.</p></div>
+    </div>
+  </details>
+
+  <div class="mbar" id="mbar" role="group" aria-label="Missões"></div>
+
+  <div class="bench">
+    <div class="col">
+      <div class="panel">
+        <div class="ph"><h2>Topologia</h2><button class="btn" id="resetLab">Reiniciar missão</button></div>
+        <div class="topo-wrap"><svg class="topo" id="topo" viewBox="0 0 700 330" role="img" aria-label="Rede local com Host A, Host B e Atacante ligados a um switch e a um roteador, que leva a um servidor web na Internet"></svg></div>
+        <div class="narr" aria-live="polite"><span class="tag">O QUE ACONTECEU</span><div id="narr"></div></div>
+      </div>
+      <div class="panel">
+        <div class="ph"><h2>Captura de pacotes · estilo Wireshark</h2><span class="eyebrow" id="capCount">0 pacotes</span></div>
+        <div class="cap-wrap" id="capWrap"></div>
+        <div class="detail" id="detail" hidden></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="panel">
+        <div class="tabs" role="tablist" id="tabs"></div>
+        <div class="term" id="term">
+          <div id="tout"></div>
+          <div class="inrow"><label for="tin" id="prompt">root@A:~#</label><input id="tin" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Comando"></div>
+        </div>
+      </div>
+      <div class="panel"><div class="mission" id="mission"></div></div>
+    </div>
+  </div>
+</div>
+<script src="js/laboratorio.js" defer></script>
+</body>
+</html>
