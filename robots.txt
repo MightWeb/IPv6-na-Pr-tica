@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ipv6-na-pratica.vercel.app/sitemap.xml
